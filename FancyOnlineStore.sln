@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FancyOnlineStore", "FancyOnlineStore\FancyOnlineStore.csproj", "{CC572725-0B31-4EC8-B438-9577664533C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{07D92479-7E41-4128-8CEF-08882A17C9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Impl", "DAL.Impl\DAL.Impl.csproj", "{10135E62-4AED-4388-9216-3CA885C84CE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CC572725-0B31-4EC8-B438-9577664533C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC572725-0B31-4EC8-B438-9577664533C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC572725-0B31-4EC8-B438-9577664533C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D92479-7E41-4128-8CEF-08882A17C9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D92479-7E41-4128-8CEF-08882A17C9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D92479-7E41-4128-8CEF-08882A17C9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D92479-7E41-4128-8CEF-08882A17C9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10135E62-4AED-4388-9216-3CA885C84CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10135E62-4AED-4388-9216-3CA885C84CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10135E62-4AED-4388-9216-3CA885C84CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10135E62-4AED-4388-9216-3CA885C84CE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
