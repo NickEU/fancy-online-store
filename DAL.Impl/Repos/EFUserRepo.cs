@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Impl.Repos
 {
-    class UserRepo2 : IUserRepo
+    class EFUserRepo : IUserRepo
     {
         public IReadOnlyCollection<string> GetNames()
         {
-            return new List<string> { "Swift", "Taylor", "Singletary" };
+            throw new NotImplementedException();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Impl.Repos
 {
-    class UserRepo : IUserRepo
+    class MockUserRepo : IUserRepo
     {
         public IReadOnlyCollection<string> GetNames()
         {
