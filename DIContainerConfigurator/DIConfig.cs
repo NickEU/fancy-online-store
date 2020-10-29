@@ -1,26 +1,37 @@
 ﻿using Autofac;
+using Autofac.Integration.Mvc;
 using BusinessLayer;
 using DAL.Impl.Repos;
 using DAL.Interfaces;
+using System.Web.Mvc;
 
 namespace DIContainerConfigurator
 {
     public class DIConfig
     {
-        public static ContainerBuilder SetupContainer(string contextType)
+        private static EnvironmentContext Env { get; set; }
+        static readonly ContainerBuilder builder = new ContainerBuilder();
+        public static ContainerBuilder SetupContainer(EnvironmentContext _Env)
         {
-            var builder = new ContainerBuilder();
-            builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
-            if (contextType == "test")
+            Env = _Env;
+            if (Env == EnvironmentContext.TEST)
             {
                 builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
-            } else
+            }
+            else
             {
                 builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
             }
             builder.RegisterType<UserService>().As<IUserService>();
             // not a big fan of exposing this builder, need to find an alternative?
             return builder;
+        }
+
+        public static void FinalizeConfig()
+        {
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            InitBL.SetContainer(container);
         }
     }
 }
