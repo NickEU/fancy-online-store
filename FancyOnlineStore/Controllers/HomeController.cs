@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using BusinessLayer;
 using System.Web.Mvc;
 
 namespace FancyOnlineStore.Controllers
 {
     public class HomeController : Controller
     {
+        //private readonly IUserService blContext;
+
+        //public HomeController(IUserService blContext)
+        //{
+        //    this.blContext = blContext;
+        //}
+
         public ActionResult Index()
         {
             return View();
@@ -25,6 +29,13 @@ namespace FancyOnlineStore.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public string GetNames()
+        {
+            // TODO: Hook up dependency injection to MVC controllers
+            return string.Join(", ", new UserService().GetNames());
+            //return string.Join(",", blContext.GetNames());
         }
     }
 }
