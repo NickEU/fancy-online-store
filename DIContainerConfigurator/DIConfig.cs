@@ -7,7 +7,7 @@ namespace DIContainerConfigurator
 {
     public class DIConfig
     {
-        public static void SetupContainer(string contextType)
+        public static ContainerBuilder SetupContainer(string contextType)
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
@@ -19,8 +19,8 @@ namespace DIContainerConfigurator
                 builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
             }
             builder.RegisterType<UserService>().As<IUserService>();
-            var container = builder.Build();
-            InitBL.SetContainer(container);
+            // not a big fan of exposing this builder, need to find an alternative?
+            return builder;
         }
     }
 }
