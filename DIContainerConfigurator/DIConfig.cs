@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using BusinessLayer;
+using BusinessLayer.Implementations;
 using DAL.Impl.Repos;
 using DAL.Interfaces;
 using System.Web.Mvc;
@@ -22,7 +23,9 @@ namespace DIContainerConfigurator
             {
                 builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
             }
+            builder.RegisterType<EFProductRepo>().As<IProductRepo>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<ProductService>().As<IProductService>();
             // not a big fan of exposing this builder, need to find an alternative?
             return builder;
         }
