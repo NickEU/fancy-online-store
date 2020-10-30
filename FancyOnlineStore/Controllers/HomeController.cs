@@ -38,9 +38,9 @@ namespace FancyOnlineStore.Controllers
             return string.Join(",", userContext.GetNames());
         }
 
-        public string ListBrands()
+        public ActionResult ListBrands()
         {
-            return "Brands: " + string.Join(", ", productContext.GetAllBrands());
+            return View(productContext.GetAllBrands());
         }
     }
 }
