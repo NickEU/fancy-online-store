@@ -5,13 +5,13 @@ namespace FancyOnlineStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService userContext;
-        private readonly IProductService productContext;
+        private readonly IUserService userService;
+        private readonly IProductService productService;
 
-        public HomeController(IUserService userContext, IProductService productContext)
+        public HomeController(IUserService userService, IProductService productService)
         {
-            this.userContext = userContext;
-            this.productContext = productContext;
+            this.userService = userService;
+            this.productService = productService;
         }
 
         public ActionResult Index()
@@ -35,12 +35,12 @@ namespace FancyOnlineStore.Controllers
 
         public string GetNames()
         {
-            return string.Join(",", userContext.GetNames());
+            return string.Join(",", userService.GetNames());
         }
 
         public ActionResult ListBrands()
         {
-            return View(productContext.GetAllBrands());
+            return View(productService.GetAllBrands());
         }
     }
 }
