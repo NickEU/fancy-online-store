@@ -85,6 +85,7 @@
     <Compile Include="Repos\EF\ProductDbContext.cs" />
     <Compile Include="Repos\MockUserRepoProd.cs" />
     <Compile Include="Repos\MockUserRepoTest.cs" />
+    <Compile Include="Repos\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

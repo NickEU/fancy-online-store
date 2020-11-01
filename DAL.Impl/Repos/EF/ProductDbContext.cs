@@ -1,15 +1,10 @@
 ﻿using DAL.Impl.Repos.EF.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Impl.Repos.EF
 {
-    class ProductDbContext : DbContext
+    internal class ProductDbContext : DbContext
     {
         public ProductDbContext() : base("FancyStoreDB")
         {
@@ -27,7 +22,7 @@ namespace DAL.Impl.Repos.EF
             //Make sure the provider assembly is available to the running application. 
             //See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
 
-            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+            _ = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
     }
     // Migrations are considered configured for MyDbContext because this class implementation exists.

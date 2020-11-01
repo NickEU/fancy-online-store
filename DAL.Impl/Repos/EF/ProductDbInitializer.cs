@@ -1,14 +1,9 @@
 ﻿using DAL.Impl.Repos.EF.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Impl.Repos.EF
 {
-    class ProductDbInitializer : DropCreateDatabaseAlways<ProductDbContext>
+    internal class ProductDbInitializer : DropCreateDatabaseAlways<ProductDbContext>
     {
         protected override void Seed(ProductDbContext context)
         {
