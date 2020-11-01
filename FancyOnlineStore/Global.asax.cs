@@ -24,7 +24,7 @@ namespace FancyOnlineStore
 
         private void HookupAutofacDI()
         {
-            var builder = DIConfig.SetupContainer(EnvironmentContext.PRODUCTION);
+            var builder = DIConfig.SetupContainer(EnvironmentContext.Production);
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             DIConfig.FinalizeConfig();
         }

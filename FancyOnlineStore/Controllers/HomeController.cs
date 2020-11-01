@@ -1,17 +1,17 @@
-﻿using BusinessLayer;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using BusinessLayer.Interfaces;
 
 namespace FancyOnlineStore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserService userService;
-        private readonly IProductService productService;
+        private readonly IUserService _userService;
+        private readonly IProductService _productService;
 
         public HomeController(IUserService userService, IProductService productService)
         {
-            this.userService = userService;
-            this.productService = productService;
+            this._userService = userService;
+            this._productService = productService;
         }
 
         public ActionResult Index()
@@ -35,12 +35,12 @@ namespace FancyOnlineStore.Controllers
 
         public string GetNames()
         {
-            return string.Join(",", userService.GetNames());
+            return string.Join(",", _userService.GetNames());
         }
 
         public ActionResult ListBrands()
         {
-            return View(productService.GetAllBrands());
+            return View(_productService.GetAllBrands());
         }
     }
 }

@@ -5,34 +5,36 @@ using BusinessLayer.Implementations;
 using DAL.Impl.Repos;
 using DAL.Interfaces;
 using System.Web.Mvc;
+using BusinessLayer.Interfaces;
+using DAL.Impl.Repos.EF;
 
 namespace DIContainerConfigurator
 {
     public class DIConfig
     {
         private static EnvironmentContext Env { get; set; }
-        static readonly ContainerBuilder builder = new ContainerBuilder();
-        public static ContainerBuilder SetupContainer(EnvironmentContext _Env)
+        private static readonly ContainerBuilder Builder = new ContainerBuilder();
+        public static ContainerBuilder SetupContainer(EnvironmentContext env)
         {
-            Env = _Env;
-            if (Env == EnvironmentContext.TEST)
+            Env = env;
+            if (Env == EnvironmentContext.Test)
             {
-                builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
+                Builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
             }
             else
             {
-                builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
+                Builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
             }
-            builder.RegisterType<EFProductRepo>().As<IProductRepo>();
-            builder.RegisterType<UserService>().As<IUserService>();
-            builder.RegisterType<ProductService>().As<IProductService>();
+            Builder.RegisterType<EFProductRepo>().As<IProductRepo>();
+            Builder.RegisterType<UserService>().As<IUserService>();
+            Builder.RegisterType<ProductService>().As<IProductService>();
             // not a big fan of exposing this builder, need to find an alternative?
-            return builder;
+            return Builder;
         }
 
         public static void FinalizeConfig()
         {
-            var container = builder.Build();
+            var container = Builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             InitBL.SetContainer(container);
         }

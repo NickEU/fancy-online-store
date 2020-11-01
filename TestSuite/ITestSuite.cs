@@ -1,9 +1,6 @@
-﻿using BusinessLayer;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BusinessLayer.Interfaces;
 
-namespace TestRunner
+namespace TestSuite
 {
     interface ITestSuite
     {

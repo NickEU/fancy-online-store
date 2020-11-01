@@ -1,9 +1,9 @@
-﻿using BusinessLayer;
-using System;
+﻿using System;
+using BusinessLayer.Interfaces;
 
-namespace TestRunner
+namespace TestSuite
 {
-    class SimpleTest : ITestSuite
+    internal class SimpleTest : ITestSuite
     {
         public void RunTestCases(IUserService businessLogic)
         {

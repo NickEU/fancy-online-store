@@ -1,14 +1,13 @@
-﻿using System;
-using BusinessLayer;
+﻿using BusinessLayer.Implementations;
 using DIContainerConfigurator;
 
-namespace TestRunner
+namespace TestSuite
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
-            DIConfig.SetupContainer(EnvironmentContext.TEST);
+            DIConfig.SetupContainer(EnvironmentContext.Test);
             DIConfig.FinalizeConfig();
             new SimpleTest().RunTestCases(new UserService());
         }
