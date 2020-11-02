@@ -10,9 +10,9 @@ namespace DAL.Impl.Repos.EF
         {
 
         }
-        public DbSet<ClothingItem> Clothes { get; set; }
+        public DbSet<Product> Clothes { get; set; }
         public DbSet<ProductImage> Images { get; set; }
-        public DbSet<ProductBrand> Brands { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
 
         public void FixEfProviderServicesProblem()

@@ -21,7 +21,7 @@ namespace DAL.Impl.Repos.EF
             {
                 var item = new Product
                 {
-                    BrandName = _dbContext.Brands.Find(product.ProductBrandId)?.BrandName,
+                    BrandName = _dbContext.Brands.Find(product.BrandId)?.BrandName,
                     Type = product.Type,
                     ProductId = product.ProductId
                 };
