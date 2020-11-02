@@ -25,9 +25,9 @@ namespace DIContainerConfigurator
             {
                 Builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
             }
-            Builder.RegisterType<EFProductRepo>().As<IProductRepo>();
             Builder.RegisterType<UserService>().As<IUserService>();
             Builder.RegisterType<ProductService>().As<IProductService>();
+            Builder.RegisterType<EFUnitOfWork>().As<IUnitOfWork>();
             // not a big fan of exposing this builder, need to find an alternative?
             return Builder;
         }

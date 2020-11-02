@@ -4,11 +4,6 @@ using DAL.Models;
 
 namespace DAL.Impl.Repos.EF.Models
 {
-    internal enum Size
-    {
-        S, M, L, XL
-    }
-
     internal class ClothingItem
     {
         [Key]

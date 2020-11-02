@@ -5,6 +5,6 @@ namespace DAL.Interfaces
 {
     public interface IProductRepo : IRepository<Product>
     {
-        IReadOnlyCollection<string> GetAllBrands();
+
     }
 }

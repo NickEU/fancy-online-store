@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfaces;
 using DAL.Models;
 
 namespace DAL.Impl.Repos.EF
 {
-    public class EFProductRepo : IProductRepo
+    internal class EFProductRepo : IProductRepo
     {
-        private readonly ProductDbContext _dbContext = new ProductDbContext();
-        public EFProductRepo()
-        {
-            Database.SetInitializer(new ProductDbInitializer());
-        }
-        public IReadOnlyCollection<string> GetAllBrands()
-        {
-            return _dbContext.Brands.Select(brand => brand.BrandName).ToList();
-        }
+        private readonly EFDbContext _dbContext;
 
+        internal EFProductRepo(EFDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IEnumerable<Product> GetAll()
         {
             var result = new List<Product>();

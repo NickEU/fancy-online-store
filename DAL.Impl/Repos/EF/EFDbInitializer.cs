@@ -4,9 +4,9 @@ using DAL.Models;
 
 namespace DAL.Impl.Repos.EF
 {
-    internal class ProductDbInitializer : DropCreateDatabaseAlways<ProductDbContext>
+    internal class EFDbInitializer : DropCreateDatabaseAlways<EFDbContext>
     {
-        protected override void Seed(ProductDbContext context)
+        protected override void Seed(EFDbContext context)
         {
             context.Brands.Add(new ProductBrand { BrandName = "Nike", HQLocation = "USA" });
             context.Brands.Add(new ProductBrand { BrandName = "Ralph Lauren", HQLocation = "USA" });

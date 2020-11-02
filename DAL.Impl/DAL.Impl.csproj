@@ -46,15 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\EF\EFUnitOfWork.cs" />
     <Compile Include="Repos\EF\Models\ProductBrand.cs" />
-    <Compile Include="Repos\EF\ProductDbInitializer.cs" />
+    <Compile Include="Repos\EF\EFDbInitializer.cs" />
     <Compile Include="Repos\EF\EFProductRepo.cs" />
     <Compile Include="Repos\EF\Models\ClothingItem.cs" />
     <Compile Include="Repos\EF\Models\ProductImage.cs" />
-    <Compile Include="Repos\EF\ProductDbContext.cs" />
+    <Compile Include="Repos\EF\EFDbContext.cs" />
     <Compile Include="Repos\MockUserRepoProd.cs" />
     <Compile Include="Repos\MockUserRepoTest.cs" />
-    <Compile Include="Repos\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

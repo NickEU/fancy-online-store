@@ -4,9 +4,9 @@ using System.Data.Entity.Migrations;
 
 namespace DAL.Impl.Repos.EF
 {
-    internal class ProductDbContext : DbContext
+    internal class EFDbContext : DbContext
     {
-        public ProductDbContext() : base("FancyStoreDB")
+        public EFDbContext() : base("FancyStoreDB")
         {
 
         }
@@ -26,7 +26,7 @@ namespace DAL.Impl.Repos.EF
         }
     }
     // Migrations are considered configured for MyDbContext because this class implementation exists.
-    internal sealed class Configuration : DbMigrationsConfiguration<ProductDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EFDbContext>
     {
         public Configuration()
         {

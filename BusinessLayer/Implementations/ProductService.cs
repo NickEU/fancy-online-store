@@ -13,8 +13,8 @@ namespace BusinessLayer.Implementations
             var container = InitBL.Container;
             using (var scope = container.BeginLifetimeScope())
             {
-                var repo = scope.Resolve<IProductRepo>();
-                return repo.GetAll()
+                var repo = scope.Resolve<IUnitOfWork>();
+                return repo.ProductRepo.GetAll()
                     .Select(product => product.BrandName)
                     .Distinct()
                     .ToList();
