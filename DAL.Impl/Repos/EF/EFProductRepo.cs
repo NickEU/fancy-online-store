@@ -1,29 +1,49 @@
-﻿using DAL.Impl.Repos.EF;
-using DAL.Impl.Repos.EF.Models;
-using DAL.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using System.Linq.Expressions;
+using DAL.Interfaces;
+using DAL.Models;
 
-namespace DAL.Impl.Repos
+namespace DAL.Impl.Repos.EF
 {
-    public class EFProductRepo : IProductRepo
+    internal class EFProductRepo : IProductRepo
     {
-        private readonly ProductDbContext dbContext = new ProductDbContext();
-        public EFProductRepo()
+        private readonly EFDbContext _dbContext;
+
+        internal EFProductRepo(EFDbContext dbContext)
         {
-            Database.SetInitializer(new ProductDbInitializer());
+            _dbContext = dbContext;
         }
-        public IReadOnlyCollection<string> GetAllBrands()
+        public IEnumerable<Product> GetAll()
         {
-            var brands = dbContext.Brands;
-            var result = new List<string>();
-            foreach(var brand in brands)
+            var result = new List<Product>();
+            foreach (var product in _dbContext.Clothes)
             {
-                result.Add(brand.BrandName);
+                var item = new Product
+                {
+                    BrandName = _dbContext.Brands.Find(product.ProductBrandId)?.BrandName,
+                    Type = product.Type,
+                    ProductId = product.ProductId
+                };
+                result.Add(item);
             }
+
             return result;
+        }
+
+        public IEnumerable<Product> Find(Expression<Func<Product, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Product entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

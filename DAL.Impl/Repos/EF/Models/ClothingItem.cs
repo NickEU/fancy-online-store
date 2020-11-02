@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.Models;
 
 namespace DAL.Impl.Repos.EF.Models
 {
-    enum Size
+    internal class ClothingItem
     {
-        S, M, L, XL
-    }
-    class ClothingItem
-    {
-        public int ClothingItemId { get; set; }
-        public string Type { get; set; }
+        [Key]
+        public int ProductId { get; set; }
+        public ClothingType Type { get; set; }
+        public string ProductName { get; set; }
 
         [ForeignKey("ProductBrand")]
         public int ProductBrandId { get; set; }

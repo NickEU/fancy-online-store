@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BusinessLayer
+namespace BusinessLayer.Interfaces
 {
     public interface IUserService
     {

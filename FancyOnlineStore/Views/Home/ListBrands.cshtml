@@ -1,0 +1,13 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Brands";
+}
+
+<h2>Available brands</h2>
+<div>
+    @foreach (var brand in Model)
+    {
+        @Html.Partial("_BrandDetails", brand);
+    }
+</div>

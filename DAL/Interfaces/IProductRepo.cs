@@ -1,13 +1,10 @@
-﻿using System;
+﻿using DAL.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IProductRepo
+    public interface IProductRepo : IRepository<Product>
     {
-        IReadOnlyCollection<string> GetAllBrands();
+
     }
 }

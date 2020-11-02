@@ -1,8 +1,9 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using Autofac;
+using BusinessLayer.Interfaces;
 using DAL.Interfaces;
-using System.Collections.Generic;
 
-namespace BusinessLayer
+namespace BusinessLayer.Implementations
 {
     public class UserService : IUserService
     {
