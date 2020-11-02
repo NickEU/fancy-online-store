@@ -3,14 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Impl.Repos.EF.Models
 {
-    internal class ProductImage
+    internal class Brand
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ProductImageId { get; set; }
-        [ForeignKey("Product")]
-        public Guid ProductId { get; set; }
+        public Guid BrandId { get; set; }
+        public string BrandName { get; set; }
+        public string HQLocation { get; set; }
         public byte[] Image { get; set; }
-
-        public virtual Product Product { get; set; }
     }
 }
