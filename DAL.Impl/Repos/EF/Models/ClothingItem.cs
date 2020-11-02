@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using DAL.Models;
 
 namespace DAL.Impl.Repos.EF.Models
 {
@@ -9,8 +11,10 @@ namespace DAL.Impl.Repos.EF.Models
 
     internal class ClothingItem
     {
-        public int ClothingItemId { get; set; }
-        public string Type { get; set; }
+        [Key]
+        public int ProductId { get; set; }
+        public ClothingType Type { get; set; }
+        public string ProductName { get; set; }
 
         [ForeignKey("ProductBrand")]
         public int ProductBrandId { get; set; }

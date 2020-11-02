@@ -4,6 +4,6 @@ namespace BusinessLayer.Interfaces
 {
     public interface IProductService
     {
-        IReadOnlyCollection<string> GetAllBrands();
+        IReadOnlyCollection<string> GetNamesOfAllBrands();
     }
 }
