@@ -31,39 +31,32 @@ namespace DAL.Impl.Repos.EF
             _context.SaveChanges();
         }
         private void SeedProducts()
-        {
+        {            
             var clothesDbSet = _context.Clothes;
             var brands = _context.Brands
-                .Select(e => e.BrandId).ToList();
-            clothesDbSet.Add(new Product
+                .Select(e => e.BrandId)
+                .ToList();
+
+            for (var i = 0; i < 10; i++)
             {
-                Type = ClothingType.Shirt,
-                Size = Size.L,
-                BrandId = GuidOfRandomBrand(brands)
-            });
-            clothesDbSet.Add(new Product
-            {
-                Type = ClothingType.Shirt,
-                Size = Size.L,
-                BrandId = GuidOfRandomBrand(brands)
-            });
-            clothesDbSet.Add(new Product
-            {
-                Type = ClothingType.Jacket,
-                Size = Size.XL,
-                BrandId = GuidOfRandomBrand(brands)
-            });
-            clothesDbSet.Add(new Product
-            {
-                Type = ClothingType.Shirt,
-                Size = Size.S,
-                BrandId = GuidOfRandomBrand(brands)
-            });
+                clothesDbSet.Add(new Product
+                {
+                    Type = GetRandomValueFromEnum<ClothingType>(),
+                    Size = GetRandomValueFromEnum<Size>(),
+                    BrandId = GetGuidOfRandomBrand(brands)
+                });
+            }
+
             _context.SaveChanges();
         }
-        private static Guid GuidOfRandomBrand(IReadOnlyCollection<Guid> brands)
+        private static Guid GetGuidOfRandomBrand(IReadOnlyCollection<Guid> brands)
         {
             return brands.ElementAt(Rnd.Next(brands.Count));
+        }
+        private static T GetRandomValueFromEnum<T>()
+        {
+            var members = Enum.GetValues(typeof(T));
+            return (T) members.GetValue(Rnd.Next(members.Length));
         }
     }
 }
