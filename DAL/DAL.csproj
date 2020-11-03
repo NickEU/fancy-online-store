@@ -46,7 +46,7 @@
     <Compile Include="Interfaces\IUserRepo.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Models\ClothingType.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDto.cs" />
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

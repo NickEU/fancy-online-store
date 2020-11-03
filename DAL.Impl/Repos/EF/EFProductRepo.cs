@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using DAL.Interfaces;
 using DAL.Models;
@@ -14,12 +15,12 @@ namespace DAL.Impl.Repos.EF
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductDto> GetAll()
         {
-            var result = new List<Product>();
+            var result = new List<ProductDto>();
             foreach (var product in _dbContext.Clothes)
             {
-                var item = new Product
+                var item = new ProductDto
                 {
                     BrandName = _dbContext.Brands.Find(product.BrandId)?.BrandName,
                     Type = product.Type,
@@ -31,17 +32,25 @@ namespace DAL.Impl.Repos.EF
             return result;
         }
 
-        public IEnumerable<Product> Find(Expression<Func<Product, bool>> predicate)
+        public IEnumerable<ProductDto> Find(Expression<Func<ProductDto, bool>> predicate)
+        {
+            return _dbContext.Clothes
+                .Select(p => new ProductDto
+                {
+                    BrandName = _dbContext.Brands.Find(p.BrandId).BrandName,
+                    ProductId = p.ProductId,
+                    Type = p.Type
+                })
+                .Where(predicate)
+                .ToList();
+        }
+
+        public void Add(ProductDto entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Add(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(Product entity)
+        public void Remove(ProductDto entity)
         {
             throw new NotImplementedException();
         }

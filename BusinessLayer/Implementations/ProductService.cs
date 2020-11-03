@@ -3,22 +3,32 @@ using DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Interfaces;
+using System;
+using DAL.Models;
 
 namespace BusinessLayer.Implementations
 {
     public class ProductService : IProductService
     {
-        public IReadOnlyCollection<string> GetNamesOfAllBrands()
+        private readonly IUnitOfWork _repo;
+        public ProductService()
         {
             var container = InitBL.Container;
-            using (var scope = container.BeginLifetimeScope())
-            {
-                var repo = scope.Resolve<IUnitOfWork>();
-                return repo.ProductRepo.GetAll()
-                    .Select(product => product.BrandName)
-                    .Distinct()
-                    .ToList();
-            }
+            var scope = container.BeginLifetimeScope();
+            _repo = scope.Resolve<IUnitOfWork>();
+        }
+
+        public IReadOnlyCollection<string> GetNamesOfAllBrands()
+        {
+            return _repo.ProductRepo.GetAll()
+                .Select(product => product.BrandName)
+                .Distinct()
+                .ToList();
+        }
+
+        public ProductDto FindProduct(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
