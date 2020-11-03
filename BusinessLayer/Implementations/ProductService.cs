@@ -26,9 +26,10 @@ namespace BusinessLayer.Implementations
                 .ToList();
         }
 
-        public ProductDto FindProduct(Guid id)
+        public IEnumerable<ProductDto> GetProductsWithClothingType(ClothingType clothingType)
         {
-            throw new NotImplementedException();
+            return _repo.ProductRepo
+                .Find(p => p.Type == clothingType);
         }
     }
 }
