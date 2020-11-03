@@ -31,8 +31,7 @@ namespace DAL.Impl.Repos.EF
             _context.SaveChanges();
         }
         private void SeedProducts()
-        {
-            
+        {            
             var clothesDbSet = _context.Clothes;
             var brands = _context.Brands
                 .Select(e => e.BrandId)
