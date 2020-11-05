@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using DAL.Models;
 
 namespace BusinessLayer.Interfaces
 {
     public interface IProductService
     {
-        IReadOnlyCollection<string> GetNamesOfAllBrands();
+        IEnumerable<ProductDto> GetProductsWithClothingType(ClothingType clothingType);
     }
 }

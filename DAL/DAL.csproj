@@ -42,9 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IBrandRepo.cs" />
     <Compile Include="Interfaces\IProductRepo.cs" />
     <Compile Include="Interfaces\IUserRepo.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Models\BrandDto.cs" />
     <Compile Include="Models\ClothingType.cs" />
     <Compile Include="Models\ProductDto.cs" />
     <Compile Include="Models\Size.cs" />

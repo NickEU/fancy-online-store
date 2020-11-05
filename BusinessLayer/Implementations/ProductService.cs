@@ -11,19 +11,9 @@ namespace BusinessLayer.Implementations
     public class ProductService : IProductService
     {
         private readonly IUnitOfWork _repo;
-        public ProductService()
+        public ProductService(IUnitOfWork repo)
         {
-            var container = InitBL.Container;
-            var scope = container.BeginLifetimeScope();
-            _repo = scope.Resolve<IUnitOfWork>();
-        }
-
-        public IReadOnlyCollection<string> GetNamesOfAllBrands()
-        {
-            return _repo.ProductRepo.GetAll()
-                .Select(product => product.BrandName)
-                .Distinct()
-                .ToList();
+            _repo = repo;
         }
 
         public IEnumerable<ProductDto> GetProductsWithClothingType(ClothingType clothingType)
