@@ -35,15 +35,5 @@ namespace FancyOnlineStore.Controllers
         {
             return string.Join(",", _services.User.GetNames());
         }
-
-        public ActionResult ListBrands()
-        {
-            return View(_services.Brand.GetNames());
-        }
-
-        public ActionResult ListItems()
-        {
-            return View();
-        }
     }
 }

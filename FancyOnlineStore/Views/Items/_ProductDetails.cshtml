@@ -1,0 +1,13 @@
+﻿@model FancyOnlineStore.Models.ProductViewModel
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.BrandName)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Type)
+    </td>
+    <td>
+        @Html.ActionLink("Let me know when it goes up for sale", "PreorderProduct", new {/* id=item.PrimaryKey */})
+    </td>
+</tr>
