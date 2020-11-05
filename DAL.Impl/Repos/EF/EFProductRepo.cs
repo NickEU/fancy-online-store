@@ -37,7 +37,7 @@ namespace DAL.Impl.Repos.EF
             return _dbContext.Clothes
                 .Select(p => new ProductDto
                 {
-                    BrandName = _dbContext.Brands.Find(p.BrandId).BrandName,
+                    BrandName = p.Brand.BrandName,
                     ProductId = p.ProductId,
                     Type = p.Type
                 })
