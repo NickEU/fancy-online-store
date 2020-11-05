@@ -77,7 +77,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,8 +109,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_BrandDetails.cshtml" />
-    <Content Include="Views\Home\ListBrands.cshtml" />
+    <Content Include="Views\Brands\_BrandDetails.cshtml" />
+    <Content Include="Views\Brands\ListBrands.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -117,6 +119,10 @@
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
       <Project>{93E98A9D-1CEF-4982-BC4F-AA53D5324446}</Project>
       <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{07D92479-7E41-4128-8CEF-08882A17C9A7}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DIContainerConfigurator\DIContainerConfigurator.csproj">
       <Project>{9A8D8487-845E-440B-9DF5-BCE94625119F}</Project>
@@ -207,7 +213,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\ListItems.cshtml" />
+    <Content Include="Views\Items\ListItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -234,6 +240,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Items\_ProductDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
