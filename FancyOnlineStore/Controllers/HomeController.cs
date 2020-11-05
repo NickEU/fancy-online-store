@@ -42,5 +42,10 @@ namespace FancyOnlineStore.Controllers
         {
             return View(_productService.GetNamesOfAllBrands());
         }
+
+        public ActionResult ListItems()
+        {
+            return View();
+        }
     }
 }
