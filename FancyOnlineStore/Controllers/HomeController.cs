@@ -14,20 +14,21 @@ namespace FancyOnlineStore.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Title = "Home Page";
             return View();
         }
 
         public ActionResult About()
         {
+            ViewBag.Title = "About";
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            ViewBag.Title = "Contact";
             return View();
         }
 
