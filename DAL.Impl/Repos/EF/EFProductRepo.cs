@@ -15,6 +15,7 @@ namespace DAL.Impl.Repos.EF
         {
             _dbContext = dbContext;
         }
+
         public IEnumerable<ProductDto> GetAll()
         {
             var result = new List<ProductDto>();

@@ -23,12 +23,16 @@ namespace DAL.Impl.Repos.EF
             return _dbContext.Brands
                 .Select(b => new BrandDto
                 {
-                    BrandId = b.BrandId, BrandName = b.BrandName,
-                    Products = b.Products.Select(p => 
+                    BrandId = b.BrandId,
+                    BrandName = b.BrandName,
+                    Products = b.Products.Select(p =>
                             // TODO: Setup auto mapping.
-                        new ProductDto {BrandName = b.BrandName,
-                            ProductId = p.ProductId,
-                            Type = p.Type})
+                            new ProductDto
+                            {
+                                BrandName = b.BrandName,
+                                ProductId = p.ProductId,
+                                Type = p.Type
+                            })
                         .ToList()
                 })
                 .ToList();
