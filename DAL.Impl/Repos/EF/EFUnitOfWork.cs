@@ -13,16 +13,7 @@ namespace DAL.Impl.Repos.EF
 
         public EFUnitOfWork()
         {
-            var config = new MapperConfiguration(
-                cfg =>
-                {
-                    cfg.CreateMap<Product, ProductDto>()
-                        .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName)
-                        );
-                    cfg.CreateMap<Brand, BrandDto>();
-                });
-
-            var mapper = config.CreateMapper();
+            var mapper = BuildAutomapperInstance();
             Database.SetInitializer(new EFDbInitializer());
             ProductRepo = new EFProductRepo(DbContext, mapper);
             UserRepo = new EFUserRepo();
@@ -41,6 +32,19 @@ namespace DAL.Impl.Repos.EF
         public void Dispose()
         {
             DbContext.Dispose();
+        }
+
+        private static IMapper BuildAutomapperInstance()
+        {
+            var config = new MapperConfiguration(
+                cfg =>
+                {
+                    cfg.CreateMap<Product, ProductDto>()
+                        .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName));
+                    cfg.CreateMap<Brand, BrandDto>();
+                });
+
+            return config.CreateMapper();
         }
     }
 }
