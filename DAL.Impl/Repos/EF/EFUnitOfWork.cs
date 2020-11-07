@@ -15,9 +15,12 @@ namespace DAL.Impl.Repos.EF
         public EFUnitOfWork()
         {
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<Product, ProductDto>());
+                cfg => cfg.CreateMap<Product, ProductDto>()
+                    .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName)
+                    ));
+            var mapper = config.CreateMapper();
             Database.SetInitializer(new EFDbInitializer());
-            ProductRepo = new EFProductRepo(DbContext);
+            ProductRepo = new EFProductRepo(DbContext, mapper);
             UserRepo = new EFUserRepo();
             BrandRepo = new EFBrandRepo(DbContext);
         }
