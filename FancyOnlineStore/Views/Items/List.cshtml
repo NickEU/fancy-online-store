@@ -1,0 +1,28 @@
+﻿@model PagedList.IPagedList<FancyOnlineStore.Models.ProductViewModel>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<h2>Our hot new collection of @(Model.First().Type)s! Coming soon to a mall near you!</h2>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            @Html.Partial("_ProductDetails", product)
+        }
+    </table>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("List", new { page }))

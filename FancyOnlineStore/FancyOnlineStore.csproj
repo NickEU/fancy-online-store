@@ -92,6 +92,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -110,7 +111,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Brands\_BrandDetails.cshtml" />
-    <Content Include="Views\Brands\ListBrands.cshtml" />
+    <Content Include="Views\Brands\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -219,7 +220,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Items\ListItems.cshtml" />
+    <Content Include="Views\Items\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
