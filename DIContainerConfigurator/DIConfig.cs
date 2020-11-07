@@ -17,7 +17,6 @@ namespace DIContainerConfigurator
         public static ContainerBuilder SetupContainer(EnvironmentContext env)
         {
             Env = env;
-            RegisterMockRepos();
             RegisterBusinessLayerServices();
             RegisterEntityFrameworkRepos();
             // not a big fan of exposing this builder, need to find an alternative?
@@ -36,24 +35,10 @@ namespace DIContainerConfigurator
             Builder.RegisterType<UserService>().As<IUserService>();
             Builder.RegisterType<ProductService>().As<IProductService>();
         }
-
-        private static void RegisterMockRepos()
-        {
-            if (Env == EnvironmentContext.Test)
-            {
-                Builder.RegisterType<MockUserRepoTest>().As<IUserRepo>();
-            }
-            else
-            {
-                Builder.RegisterType<MockUserRepoProd>().As<IUserRepo>();
-            }
-        }
-
         public static void FinalizeConfig()
         {
             var container = Builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            InitBL.SetContainer(container);
         }
     }
 }

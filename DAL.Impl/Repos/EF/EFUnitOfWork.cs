@@ -18,7 +18,7 @@ namespace DAL.Impl.Repos.EF
                 cfg => cfg.CreateMap<Product, ProductDto>());
             Database.SetInitializer(new EFDbInitializer());
             ProductRepo = new EFProductRepo(DbContext);
-            UserRepo = new MockUserRepoProd();
+            UserRepo = new EFUserRepo();
             BrandRepo = new EFBrandRepo(DbContext);
         }
 
