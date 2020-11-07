@@ -3,6 +3,7 @@ using BusinessLayer.Interfaces;
 
 namespace FancyOnlineStore.Controllers
 {
+    [RoutePrefix("Brands")]
     public class BrandsController : Controller
     {
         private readonly IServices _services;
@@ -12,7 +13,8 @@ namespace FancyOnlineStore.Controllers
             _services = services;
         }
 
-        public ActionResult List()
+        [Route("List")]
+        public ActionResult ListBrands()
         {
             ViewBag.Title = "Our partners";
             return View(_services.Brand.GetNames());

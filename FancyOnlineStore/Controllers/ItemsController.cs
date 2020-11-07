@@ -7,6 +7,7 @@ using PagedList;
 
 namespace FancyOnlineStore.Controllers
 {
+    [RoutePrefix("Items")]
     public class ItemsController : Controller
     {
         private readonly IServices _services;
@@ -16,7 +17,8 @@ namespace FancyOnlineStore.Controllers
             _services = services;
         }
 
-        public ActionResult List(int? page)
+        [Route("List")]
+        public ActionResult ListItems(int? page)
         {
             ViewBag.Title = "Our collection";
             var products = _services.Product
