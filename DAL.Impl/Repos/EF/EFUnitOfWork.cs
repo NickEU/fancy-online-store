@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Data.Entity.Core.Metadata.Edm;
 using AutoMapper;
 using DAL.Impl.Repos.EF.Models;
 using DAL.Interfaces;
@@ -15,14 +14,19 @@ namespace DAL.Impl.Repos.EF
         public EFUnitOfWork()
         {
             var config = new MapperConfiguration(
-                cfg => cfg.CreateMap<Product, ProductDto>()
-                    .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName)
-                    ));
+                cfg =>
+                {
+                    cfg.CreateMap<Product, ProductDto>()
+                        .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName)
+                        );
+                    cfg.CreateMap<Brand, BrandDto>();
+                });
+
             var mapper = config.CreateMapper();
             Database.SetInitializer(new EFDbInitializer());
             ProductRepo = new EFProductRepo(DbContext, mapper);
             UserRepo = new EFUserRepo();
-            BrandRepo = new EFBrandRepo(DbContext);
+            BrandRepo = new EFBrandRepo(DbContext, mapper);
         }
 
         public IProductRepo ProductRepo { get; }
