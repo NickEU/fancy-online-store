@@ -7,11 +7,12 @@
 <div>
     <table class="table">
         <tr>
+            @{var dummy = Model.FirstOrDefault(); }
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().BrandName)
+                @Html.DisplayNameFor(model => dummy.BrandName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Type)
+                @Html.DisplayNameFor(model => dummy.Type)
             </th>
             <th></th>
         </tr>
