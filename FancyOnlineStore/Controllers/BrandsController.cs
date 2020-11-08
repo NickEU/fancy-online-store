@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using BusinessLayer.Interfaces;
+using DAL.Models;
+using FancyOnlineStore.Models;
 
 namespace FancyOnlineStore.Controllers
 {
@@ -17,7 +20,10 @@ namespace FancyOnlineStore.Controllers
         public ActionResult ListBrands()
         {
             ViewBag.Title = "Our partners";
-            return View(_services.Brand.GetNames());
+            var brands = _services.Brand.GetBrands();
+            var brandsView = AutoMapper.Mapper
+                .Map<IEnumerable<BrandDto>, IEnumerable<BrandViewModel>>(brands);
+            return View(brandsView);
         }
     }
 }

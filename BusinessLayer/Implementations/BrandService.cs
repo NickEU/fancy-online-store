@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BusinessLayer.Interfaces;
 using DAL.Interfaces;
+using DAL.Models;
 
 namespace BusinessLayer.Implementations
 {
@@ -15,10 +13,9 @@ namespace BusinessLayer.Implementations
         {
             _repo = repo;
         }
-        public IReadOnlyCollection<string> GetNames()
+        public IReadOnlyCollection<BrandDto> GetBrands()
         {
             return _repo.BrandRepo.GetAll()
-                .Select(b => b.BrandName)
                 .ToList();
         }
     }
