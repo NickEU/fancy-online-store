@@ -3,11 +3,20 @@
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
-<h2>Our hot new collection of @(Model.First().Type)s! Coming soon to a mall near you!</h2>
+@{
+    //TODO: Show errors in a proper view. Move this logic to the constructor??
+    var dummy = Model.FirstOrDefault();
+    if (dummy is null)
+    {
+        <h2>Error!</h2>
+        <h6>Please try again later!</h6>
+        return;
+    }
+}
+<h2>Our hot new collection of @(dummy.Type)s! Coming soon to a mall near you!</h2>
 <div>
     <table class="table">
         <tr>
-            @{var dummy = Model.FirstOrDefault(); }
             <th>
                 @Html.DisplayNameFor(model => dummy.BrandName)
             </th>
