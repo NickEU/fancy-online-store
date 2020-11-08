@@ -5,6 +5,6 @@ namespace BusinessLayer.Interfaces
 {
     public interface IBrandService
     {
-        IReadOnlyCollection<BrandDto> GetNames();
+        IReadOnlyCollection<BrandDto> GetBrands();
     }
 }

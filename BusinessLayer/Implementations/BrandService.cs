@@ -13,7 +13,7 @@ namespace BusinessLayer.Implementations
         {
             _repo = repo;
         }
-        public IReadOnlyCollection<BrandDto> GetNames()
+        public IReadOnlyCollection<BrandDto> GetBrands()
         {
             return _repo.BrandRepo.GetAll()
                 .ToList();
