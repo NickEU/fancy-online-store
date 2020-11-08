@@ -42,6 +42,7 @@ namespace DAL.Impl.Repos.EF
                     cfg.CreateMap<Product, ProductDto>()
                         .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName));
                     cfg.CreateMap<Brand, BrandDto>();
+                    cfg.CreateMap<ProductDto, Product>();
                 });
 
             return config.CreateMapper();

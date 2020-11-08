@@ -7,5 +7,6 @@ namespace BusinessLayer.Interfaces
     public interface IProductService
     {
         IEnumerable<ProductDto> GetProductsWithClothingType(ClothingType clothingType);
+        void AddProduct(ProductDto entity);
     }
 }

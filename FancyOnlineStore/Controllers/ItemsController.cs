@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BusinessLayer.Interfaces;
@@ -9,13 +10,10 @@ using PagedList;
 namespace FancyOnlineStore.Controllers
 {
     [RoutePrefix("Items")]
-    public class ItemsController : Controller
+    public class ItemsController : BaseController
     {
-        private readonly IServices _services;
-
-        public ItemsController(IServices services)
+        public ItemsController(IServices services) : base(services)
         {
-            _services = services;
         }
 
         [Route("List")]
@@ -23,7 +21,7 @@ namespace FancyOnlineStore.Controllers
         {
             ViewBag.Title = "Our collection";
             // not the greatest solution in the world
-            var clothes = _services.Product
+            var clothes = Services.Product
                 .GetProductsWithClothingType(ClothingType.Jacket)
                 .OrderByDescending(p => p.ProductName.Length)
                 .ThenByDescending(p => p.ProductName)
@@ -35,6 +33,22 @@ namespace FancyOnlineStore.Controllers
             var pageNum = page ?? 1;
             // TODO: implement server-side pagination, using SQL stored procedure??
             return View(clothesView.ToPagedList(pageNum, pageSize));
+        }
+
+        [Route("Add")]
+        public ActionResult AddItem()
+        {
+            throw new NotImplementedException();
+            return View();
+        }
+
+        [Route("Add")]
+        [HttpPost]
+        public ActionResult AddItem(ProductViewModel product)
+        {
+            throw new NotImplementedException();
+            Console.WriteLine(product.BrandName);
+            return View();
         }
     }
 }

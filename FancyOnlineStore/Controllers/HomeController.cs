@@ -3,13 +3,10 @@ using BusinessLayer.Interfaces;
 
 namespace FancyOnlineStore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly IServices _services;
-
-        public HomeController(IServices services)
+        public HomeController(IServices services) : base(services)
         {
-            _services = services;
         }
 
         public ActionResult Index()
@@ -34,7 +31,7 @@ namespace FancyOnlineStore.Controllers
 
         public string GetNames()
         {
-            return string.Join(",", _services.User.GetNames());
+            return string.Join(",", Services.User.GetNames());
         }
     }
 }

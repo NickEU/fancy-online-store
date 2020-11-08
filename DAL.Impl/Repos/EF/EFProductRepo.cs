@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
+using DAL.Impl.Repos.EF.Models;
 using DAL.Interfaces;
 using DAL.Models;
 
@@ -32,7 +33,8 @@ namespace DAL.Impl.Repos.EF
 
         public void Add(ProductDto entity)
         {
-            throw new NotImplementedException();
+            var product = Mapper.Map<Product>(entity);
+            _dbContext.Clothes.Add(product);
         }
 
         public void Remove(ProductDto entity)
