@@ -10,7 +10,6 @@ namespace DAL.Impl.Repos.EF
 {
     internal class EFDbInitializer : DropCreateDatabaseAlways<EFDbContext>
     {
-        private static readonly Random Rnd = new Random();
         private EFDbContext _context;
 
         protected override void Seed(EFDbContext context)
@@ -31,32 +30,33 @@ namespace DAL.Impl.Repos.EF
             _context.SaveChanges();
         }
         private void SeedProducts()
-        {            
-            var clothesDbSet = _context.Clothes;
+        {
             var brands = _context.Brands
                 .Select(e => e.BrandId)
                 .ToList();
 
-            for (var i = 0; i < 10; i++)
+            const int productCount = 5000;
+            var randomProducts = new Product[productCount];
+
+            for (var i = 0; i < productCount; i++)
             {
-                clothesDbSet.Add(new Product
-                {
-                    Type = GetRandomValueFromEnum<ClothingType>(),
-                    Size = GetRandomValueFromEnum<Size>(),
-                    BrandId = GetGuidOfRandomBrand(brands)
-                });
+                randomProducts[i] = GenerateRandomProduct(brands);
             }
 
+            // better but still slow, need to find an alternative
+            _context.Clothes.AddRange(randomProducts);
             _context.SaveChanges();
         }
-        private static Guid GetGuidOfRandomBrand(IReadOnlyCollection<Guid> brands)
+
+        private static Product GenerateRandomProduct(IReadOnlyCollection<Guid> brands)
         {
-            return brands.ElementAt(Rnd.Next(brands.Count));
-        }
-        private static T GetRandomValueFromEnum<T>()
-        {
-            var members = Enum.GetValues(typeof(T));
-            return (T) members.GetValue(Rnd.Next(members.Length));
+            return new Product
+            {
+                ProductName = Util.GenerateRandomProductName(),
+                Type = Util.GetRandomValueFromEnum<ClothingType>(),
+                Size = Util.GetRandomValueFromEnum<Size>(),
+                BrandId = Util.GetGuidOfRandomBrand(brands)
+            };
         }
     }
 }

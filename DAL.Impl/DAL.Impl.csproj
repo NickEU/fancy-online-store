@@ -55,6 +55,7 @@
     <Compile Include="Repos\EF\Models\Product.cs" />
     <Compile Include="Repos\EF\Models\ProductImage.cs" />
     <Compile Include="Repos\EF\EFDbContext.cs" />
+    <Compile Include="Repos\EF\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
