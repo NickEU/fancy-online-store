@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interfaces;
 using DAL.Models;
 
@@ -17,12 +15,12 @@ namespace DAL.Impl.Repos.EF
             return new List<string> { "Smith", "Wilson", "King" };
         }
 
-        public IEnumerable<User> GetAll()
+        public IQueryable<User> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<User> Find(Expression<Func<User, bool>> predicate)
+        public IQueryable<User> Find(Expression<Func<User, bool>> predicate)
         {
             throw new NotImplementedException();
         }

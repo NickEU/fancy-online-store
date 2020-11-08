@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -19,17 +18,16 @@ namespace DAL.Impl.Repos.EF
             _dbContext = dbContext;
         }
 
-        public IEnumerable<ProductDto> GetAll()
+        public IQueryable<ProductDto> GetAll()
         {
             return Mapper
-                .ProjectTo<ProductDto>(_dbContext.Clothes)
-                .ToList();
+                .ProjectTo<ProductDto>(_dbContext.Clothes);
         }
 
-        public IEnumerable<ProductDto> Find(Expression<Func<ProductDto, bool>> predicate)
+        public IQueryable<ProductDto> Find(Expression<Func<ProductDto, bool>> predicate)
         {
             return GetAll()
-                .Where(predicate.Compile());
+                .Where(predicate);
         }
 
         public void Add(ProductDto entity)

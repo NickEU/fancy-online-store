@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
 using DAL.Interfaces;
@@ -18,12 +18,12 @@ namespace DAL.Impl.Repos.EF
             _dbContext = dbContext;
         }
 
-        public IEnumerable<BrandDto> GetAll()
+        public IQueryable<BrandDto> GetAll()
         {
             return Mapper.ProjectTo<BrandDto>(_dbContext.Brands);
         }
 
-        public IEnumerable<BrandDto> Find(Expression<Func<BrandDto, bool>> predicate)
+        public IQueryable<BrandDto> Find(Expression<Func<BrandDto, bool>> predicate)
         {
             throw new NotImplementedException();
         }
