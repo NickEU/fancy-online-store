@@ -4,6 +4,7 @@ using System.Linq;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
+using EntityFramework.BulkInsert.Extensions;
 using Product = DAL.Impl.Repos.EF.Models.Product;
 
 namespace DAL.Impl.Repos.EF
@@ -31,21 +32,27 @@ namespace DAL.Impl.Repos.EF
         }
         private void SeedProducts()
         {
+            const int productCount = 5000;
+            var randomProducts = GenerateRandomProducts(productCount);
+
+            _context.BulkInsert(randomProducts);
+            _context.SaveChanges();
+        }
+
+        private IEnumerable<Product> GenerateRandomProducts(int productCount)
+        {
             var brands = _context.Brands
                 .Select(e => e.BrandId)
                 .ToList();
 
-            const int productCount = 5000;
-            var randomProducts = new Product[productCount];
+            var randomProducts = new List<Product>(productCount);
 
             for (var i = 0; i < productCount; i++)
             {
-                randomProducts[i] = GenerateRandomProduct(brands);
+                randomProducts.Add(GenerateRandomProduct(brands));
             }
 
-            // better but still slow, need to find an alternative
-            _context.Clothes.AddRange(randomProducts);
-            _context.SaveChanges();
+            return randomProducts;
         }
 
         private static Product GenerateRandomProduct(IReadOnlyCollection<Guid> brands)
