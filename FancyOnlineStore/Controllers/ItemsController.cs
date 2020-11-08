@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using BusinessLayer.Interfaces;
 using DAL.Models;
@@ -21,17 +22,14 @@ namespace FancyOnlineStore.Controllers
         public ActionResult ListItems(int? page)
         {
             ViewBag.Title = "Our collection";
-            var products = _services.Product
-                .GetProductsWithClothingType(ClothingType.Jacket)
-                //TODO: add auto mapping
-                .Select(p => new ProductViewModel
-                {
-                    BrandName = p.BrandName, Type = p.Type
-                })
-                .ToList();
+            var clothes = _services.Product
+                .GetProductsWithClothingType(ClothingType.Jacket);
+            var clothesView = AutoMapper.Mapper
+                .Map<IEnumerable<ProductDto>, IEnumerable<ProductViewModel>>(clothes);
+
             const int pageSize = 3;
             var pageNum = page ?? 1;
-            return View(products.ToPagedList(pageNum, pageSize));
+            return View(clothesView.ToPagedList(pageNum, pageSize));
         }
     }
 }
