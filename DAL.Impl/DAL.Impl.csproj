@@ -55,6 +55,7 @@
     <Compile Include="Repos\EF\Models\Product.cs" />
     <Compile Include="Repos\EF\Models\ProductImage.cs" />
     <Compile Include="Repos\EF\EFDbContext.cs" />
+    <Compile Include="Repos\EF\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -77,6 +78,9 @@
     </PackageReference>
     <PackageReference Include="EntityFramework">
       <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework6.BulkInsert">
+      <Version>6.0.3.10</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

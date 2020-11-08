@@ -5,6 +5,7 @@ namespace DAL.Models
     public class ProductDto
     {
         public string BrandName { get; set; }
+        public string ProductName { get; set; }
         public ClothingType Type { get; set; }
         public Guid ProductId { get; set; }
 }
