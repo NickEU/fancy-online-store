@@ -13,6 +13,7 @@
     <td>
         @using (Html.BeginForm("RemoveItem", "Items", FormMethod.Post))
         {
+            //TODO: Create admin role in Identity. Allow access to this form only to admins.
             @Html.AntiForgeryToken()
             @Html.HiddenFor(m => m.BrandName)
             @Html.HiddenFor(m => m.BrandId)
@@ -20,7 +21,7 @@
             @Html.HiddenFor(m => m.Size)
             @Html.HiddenFor(m => m.Type)
             @Html.HiddenFor(m => m.ProductName)
-            
+
             <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
         }
     </td>
