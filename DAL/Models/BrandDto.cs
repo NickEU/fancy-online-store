@@ -7,6 +7,7 @@ namespace DAL.Models
     {
         public Guid BrandId { get; set; }
         public string BrandName { get; set; }
+        public string HQLocation { get; set; }
 
         public virtual ICollection<ProductDto> Products { get; set; }
     }

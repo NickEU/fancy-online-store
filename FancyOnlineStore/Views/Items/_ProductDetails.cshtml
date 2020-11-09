@@ -8,6 +8,20 @@
         @Html.DisplayFor(model => model.ProductName)
     </td>
     <td>
-        @Html.ActionLink("Let me know when it goes up for sale", "PreorderProduct", new {/* id=item.PrimaryKey */})
+        @Html.DisplayFor(model => model.Size)
+    </td>
+    <td>
+        @using (Html.BeginForm("RemoveItem", "Items", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.BrandName)
+            @Html.HiddenFor(m => m.BrandId)
+            @Html.HiddenFor(m => m.ProductId)
+            @Html.HiddenFor(m => m.Size)
+            @Html.HiddenFor(m => m.Type)
+            @Html.HiddenFor(m => m.ProductName)
+            
+            <button type="submit" class="btn btn-danger" value="Delete">Delete</button>
+        }
     </td>
 </tr>

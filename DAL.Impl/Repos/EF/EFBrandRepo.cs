@@ -25,7 +25,8 @@ namespace DAL.Impl.Repos.EF
 
         public IQueryable<BrandDto> Find(Expression<Func<BrandDto, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll()
+                .Where(predicate);
         }
 
         public void Add(BrandDto entity)

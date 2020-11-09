@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Linq;
 using AutoMapper;
 using DAL.Impl.Repos.EF.Models;
 using DAL.Interfaces;
@@ -13,8 +14,12 @@ namespace DAL.Impl.Repos.EF
 
         public EFUnitOfWork()
         {
+            if (EFDbState.NotInitialized)
+            {
+                InitializeDatabase();
+            }
+
             var mapper = BuildAutomapperInstance();
-            Database.SetInitializer(new EFDbInitializer());
             ProductRepo = new EFProductRepo(DbContext, mapper);
             UserRepo = new EFUserRepo();
             BrandRepo = new EFBrandRepo(DbContext, mapper);
@@ -42,9 +47,17 @@ namespace DAL.Impl.Repos.EF
                     cfg.CreateMap<Product, ProductDto>()
                         .ForMember(dto => dto.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName));
                     cfg.CreateMap<Brand, BrandDto>();
+                    cfg.CreateMap<ProductDto, Product>();
                 });
 
             return config.CreateMapper();
+        }
+
+        private void InitializeDatabase()
+        {
+            Database.SetInitializer(new EFDbInitializer());
+            DbContext.Brands.First();
+            EFDbState.NotInitialized = false;
         }
     }
 }

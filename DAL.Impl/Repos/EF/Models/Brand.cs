@@ -8,10 +8,9 @@ namespace DAL.Impl.Repos.EF.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid BrandId { get; set; }
+
         public string BrandName { get; set; }
         public string HQLocation { get; set; }
         public byte[] Image { get; set; }
-
-        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -12,7 +12,9 @@ namespace DIContainerConfigurator
 {
     public class DIConfig
     {
+#pragma warning disable IDE0052 // Remove unread private members
         private static EnvironmentContext Env { get; set; }
+#pragma warning restore IDE0052 // Remove unread private members
         private static readonly ContainerBuilder Builder = new ContainerBuilder();
         public static ContainerBuilder SetupContainer(EnvironmentContext env)
         {

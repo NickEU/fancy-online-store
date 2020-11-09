@@ -20,5 +20,17 @@ namespace BusinessLayer.Implementations
                 .Find(p => p.Type == clothingType)
                 .ToList();
         }
+
+        public void AddProduct(ProductDto entity)
+        {
+            _repo.ProductRepo.Add(entity);
+            _repo.SaveChanges();
+        }
+
+        public void RemoveProduct(ProductDto entity)
+        {
+            _repo.ProductRepo.Remove(entity);
+            _repo.SaveChanges();
+        }
     }
 }

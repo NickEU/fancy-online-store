@@ -7,23 +7,17 @@ using FancyOnlineStore.Models;
 namespace FancyOnlineStore.Controllers
 {
     [RoutePrefix("Brands")]
-    public class BrandsController : Controller
+    public class BrandsController : BaseController
     {
-        private readonly IServices _services;
-
-        public BrandsController(IServices services)
+        public BrandsController(IServices services) : base(services)
         {
-            _services = services;
         }
 
         [Route("List")]
         public ActionResult ListBrands()
         {
             ViewBag.Title = "Our partners";
-            var brands = _services.Brand.GetBrands();
-            var brandsView = AutoMapper.Mapper
-                .Map<IEnumerable<BrandDto>, IEnumerable<BrandViewModel>>(brands);
-            return View(brandsView);
+            return View(ProductPossibleValues.Brands);
         }
     }
 }
