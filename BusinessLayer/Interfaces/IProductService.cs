@@ -8,5 +8,6 @@ namespace BusinessLayer.Interfaces
     {
         IEnumerable<ProductDto> GetProductsWithClothingType(ClothingType clothingType);
         void AddProduct(ProductDto entity);
+        void RemoveProduct(ProductDto entity);
     }
 }

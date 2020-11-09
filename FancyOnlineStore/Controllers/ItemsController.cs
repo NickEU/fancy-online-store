@@ -55,5 +55,14 @@ namespace FancyOnlineStore.Controllers
 
             return View();
         }
+
+        [Route("Remove")]
+        [HttpPost]
+        public ActionResult RemoveItem(ProductViewModel product)
+        {
+            var productDto = AutoMapper.Mapper.Map<ProductViewModel, ProductDto>(product);
+            Services.Product.RemoveProduct(productDto);
+            return RedirectToAction("ListItems");
+        }
     }
 }
