@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BusinessLayer.Interfaces;
 using DAL.Interfaces;
@@ -17,6 +18,13 @@ namespace BusinessLayer.Implementations
         {
             return _repo.BrandRepo.GetAll()
                 .ToList();
+        }
+
+        public Guid GetBrandIdFromName(string brandName)
+        {
+            return _repo.BrandRepo
+                .Find(b => b.BrandName == brandName)
+                .First().BrandId;
         }
     }
 }
