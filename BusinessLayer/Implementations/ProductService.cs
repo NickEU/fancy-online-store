@@ -24,6 +24,7 @@ namespace BusinessLayer.Implementations
         public void AddProduct(ProductDto entity)
         {
             _repo.ProductRepo.Add(entity);
+            _repo.SaveChanges();
         }
     }
 }
