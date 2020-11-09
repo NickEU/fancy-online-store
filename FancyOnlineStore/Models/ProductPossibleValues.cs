@@ -7,7 +7,12 @@ namespace FancyOnlineStore.Models
     public static class ProductPossibleValues
     {
         public static IReadOnlyCollection<BrandViewModel> Brands = null;
-        public static Size[] Sizes = (Size[]) Enum.GetValues(typeof(Size));
-        public static ClothingType[] Types = (ClothingType[]) Enum.GetValues(typeof(ClothingType));
+        public static Size[] Sizes = GetValues<Size>();
+        public static ClothingType[] Types = GetValues<ClothingType>();
+
+        private static T[] GetValues<T>()
+        {
+            return (T[]) Enum.GetValues(typeof(T));
+        }
     }
 }
