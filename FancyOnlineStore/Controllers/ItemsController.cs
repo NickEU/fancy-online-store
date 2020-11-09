@@ -67,15 +67,17 @@ namespace FancyOnlineStore.Controllers
         {
             var productDto = AutoMapper.Mapper.Map<ProductViewModel, ProductDto>(product);
             Services.Product.RemoveProduct(productDto);
-            var urlPieces = Request.UrlReferrer?
-                .ToString()
+            return RedirectToAction("ListItems", ParseUrlForPageNum());
+        }
+
+        private object ParseUrlForPageNum()
+        {
+            var urlPieces = Request.UrlReferrer?.ToString()
                 .Split("page=".ToCharArray());
             // defensive programming ftw ( not really :/ )
             var pageNumPotential = urlPieces is null ? "1" : urlPieces.Last();
             var isInteger = int.TryParse(pageNumPotential, out var pageNum);
-            var routeVal = new {page = isInteger ? pageNum : 1};
-
-            return RedirectToAction("ListItems", routeVal);
+            return new { page = isInteger ? pageNum : 1 };
         }
     }
 }
