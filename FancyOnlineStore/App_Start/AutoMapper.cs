@@ -18,6 +18,7 @@ namespace FancyOnlineStore
                 cfg =>
                 {
                     cfg.CreateMap<ProductDto, ProductViewModel>();
+                    cfg.CreateMap<ProductViewModel, ProductDto>();
                     cfg.CreateMap<BrandDto, BrandViewModel>();
                 });
             Mapper = config.CreateMapper();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BusinessLayer.Interfaces;
@@ -22,7 +21,7 @@ namespace FancyOnlineStore.Controllers
             ViewBag.Title = "Our collection";
             // not the greatest solution in the world
             var clothes = Services.Product
-                .GetProductsWithClothingType(ClothingType.Jacket)
+                .GetProductsWithClothingType(ClothingType.Shirt)
                 .OrderByDescending(p => p.ProductName.Length)
                 .ThenByDescending(p => p.ProductName)
                 .ToList();
@@ -38,7 +37,6 @@ namespace FancyOnlineStore.Controllers
         [Route("Add")]
         public ActionResult AddItem()
         {
-            throw new NotImplementedException();
             return View();
         }
 
@@ -46,8 +44,15 @@ namespace FancyOnlineStore.Controllers
         [HttpPost]
         public ActionResult AddItem(ProductViewModel product)
         {
-            throw new NotImplementedException();
-            Console.WriteLine(product.BrandName);
+            if (!ModelState.IsValid) return View();
+
+            product.BrandId = Services.Brand.GetBrandIdFromName(product.BrandName);
+            var productDto = AutoMapper.Mapper.Map<ProductViewModel, ProductDto>(product);
+
+            Services.Product.AddProduct(productDto);
+            //TODO: make sure the product was added to the DB, placeholder for now
+            ViewBag.Success = true;
+
             return View();
         }
     }
