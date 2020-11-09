@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using AutoMapper;
 using DAL.Impl.Repos.EF.Models;
@@ -31,7 +32,16 @@ namespace DAL.Impl.Repos.EF
 
         public void SaveChanges()
         {
-            DbContext.SaveChanges();
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                //TODO: Solves conflicts when quickly executing two modifications
+                //TODO: at the same time. Right now just ignores the second transaction.
+                //TODO: Will run into issues later when multiple users are using the app.
+            }
         }
 
         public void Dispose()
