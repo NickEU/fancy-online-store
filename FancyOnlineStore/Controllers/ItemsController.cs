@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using BusinessLayer.Interfaces;
@@ -19,7 +20,7 @@ namespace FancyOnlineStore.Controllers
         public ActionResult ListItems(int? page)
         {
             ViewBag.Title = "Our collection";
-            // not the greatest solution in the world
+            //TODO: Implement filtering and ordering by different columns
             var clothes = Services.Product
                 .GetProductsWithClothingType(ClothingType.Shirt)
                 .OrderByDescending(p => p.ProductName.Length)
@@ -30,6 +31,10 @@ namespace FancyOnlineStore.Controllers
 
             const int pageSize = 10;
             var pageNum = page ?? 1;
+            // TODO: This fixes issues with pagination when deleting all the elements
+            // TODO: on the last page. Look for a better solution since this one is a hack.
+            var maxPageNum = (int) Math.Ceiling(1.0 * clothesView.Count() / pageSize);
+            pageNum = Math.Min(pageNum, maxPageNum);
             // TODO: implement server-side pagination, using SQL stored procedure??
             return View(clothesView.ToPagedList(pageNum, pageSize));
         }
@@ -62,7 +67,15 @@ namespace FancyOnlineStore.Controllers
         {
             var productDto = AutoMapper.Mapper.Map<ProductViewModel, ProductDto>(product);
             Services.Product.RemoveProduct(productDto);
-            return RedirectToAction("ListItems");
+            var urlPieces = Request.UrlReferrer?
+                .ToString()
+                .Split("page=".ToCharArray());
+            // defensive programming ftw ( not really :/ )
+            var pageNumPotential = urlPieces is null ? "1" : urlPieces.Last();
+            var isInteger = int.TryParse(pageNumPotential, out var pageNum);
+            var routeVal = new {page = isInteger ? pageNum : 1};
+
+            return RedirectToAction("ListItems", routeVal);
         }
     }
 }
