@@ -17,10 +17,7 @@ namespace FancyOnlineStore.Controllers
         public ActionResult ListBrands()
         {
             ViewBag.Title = "Our partners";
-            var brands = Services.Brand.GetBrands();
-            var brandsView = AutoMapper.Mapper
-                .Map<IEnumerable<BrandDto>, IEnumerable<BrandViewModel>>(brands);
-            return View(brandsView);
+            return View(ProductPossibleValues.Brands);
         }
     }
 }
